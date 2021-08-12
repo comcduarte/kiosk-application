@@ -34,7 +34,8 @@
 			"Components\\" : "module/Components/src",
 			"Settings\\" : "module/Settings/src",
 			"User\\" : "module/User/src",
-			"Annotation\\" : "module/Annotation/src"
+			"Annotation\\" : "module/Annotation/src",
+			"Files\\" : "module/Files/src"
 		}
 	},
 	"autoload-dev" : {

@@ -26,6 +26,7 @@ return [
     'Acl',
     'Annotation',
     'Components',
+    'Files',
     'Settings',
     'User',
 ];

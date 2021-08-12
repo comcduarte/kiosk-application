@@ -13,3 +13,6 @@
 [submodule "module/Settings"]
 	path = module/Settings
 	url = git@github.com:comcduarte/com-settings.git
+[submodule "module/Files"]
+	path = module/Files
+	url = git@github.com:comcduarte/com-files.git
