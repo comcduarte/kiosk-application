@@ -6,6 +6,9 @@ namespace Application;
 
 class Module
 {
+    const TITLE = 'Kiosk';
+    const VERSION = '1.0.0';
+    
     public function getConfig(): array
     {
         /** @var array $config */
