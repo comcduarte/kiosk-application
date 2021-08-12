@@ -94,12 +94,16 @@ return [
             'links' => [],
             'links/default' => [],
             'links/config' => [],
+            'sections' => [],
+            'sections/default' => [],
+            'sections/config' => [],
         ],
     ],
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
             Controller\HyperlinkController::class => Controller\Factory\HyperlinkControllerFactory::class,
+            Controller\SectionController::class => Controller\Factory\SectionControllerFactory::class,
         ],
     ],
     'form_elements' => [
@@ -168,6 +172,14 @@ return [
         ],
         'factories' => [
             'hyperlink-model-adapter' => HyperlinkModelAdapterFactory::class,
+        ],
+    ],
+    'view_helpers' => [
+        'aliases' => [
+            'functions' => View\Helper\Functions::class,
+        ],
+        'factories' => [
+            View\Helper\Functions::class => InvokableFactory::class,
         ],
     ],
     'view_manager' => [
