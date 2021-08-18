@@ -1,6 +1,7 @@
 <?php
 namespace Application\Controller;
 
+use Application\Form\SectionAssignmentForm;
 use Components\Controller\AbstractBaseController;
 use Laminas\Db\ResultSet\ResultSet;
 use Laminas\Db\Sql\Join;
@@ -58,5 +59,36 @@ class SectionController extends AbstractBaseController
         $view->setVariable('subtable_params', $subtable_params);
         
         return $view;
+    }
+    
+    public function assignAction()
+    {
+        $form = new SectionAssignmentForm('SECTION_ASSIGN_FORM');
+        $form->setDbAdapter($this->adapter);
+        $form->init();
+        
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            
+            if ($form->isValid()) {
+                $data = $request->getPost();
+                $this->model->read(['UUID' => $data['SECTION']]);
+                $this->model->assign($data['LINK']);
+                
+                $this->flashmessenger()->addSuccessMessage('Successfully assigned hyperlink to section');
+            }
+        }
+        
+        $url = $this->getRequest()->getHeader('Referer')->getUri();
+        return $this->redirect()->toUrl($url);
+    }
+    
+    public function unassignAction()
+    {
+        $join_uuid = $this->params()->fromRoute('uuid',0);
+        $this->model->unassign(NULL, $join_uuid);
+        $url = $this->getRequest()->getHeader('Referer')->getUri();
+        return $this->redirect()->toUrl($url);
     }
 }

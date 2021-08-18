@@ -24,7 +24,7 @@ class HyperlinkModel extends AbstractBaseModel
     
     public function assign($section_uuid)
     {
-        $sql = new Sql($this->dbAdapter);
+        $sql = new Sql($this->adapter);
         $uuid = $this->generate_uuid();
         
         $columns = [
@@ -34,7 +34,7 @@ class HyperlinkModel extends AbstractBaseModel
         ];
         
         $values = [
-            $uuid->value,
+            $uuid,
             $this->UUID,
             $section_uuid,
         ];
@@ -56,7 +56,7 @@ class HyperlinkModel extends AbstractBaseModel
     
     public function unassign($section_uuid = NULL, $join_uuid = NULL)
     {
-        $sql = new Sql($this->dbAdapter);
+        $sql = new Sql($this->adapter);
         
         $delete = new Delete();
         $delete->from('section_links');

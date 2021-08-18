@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace Application;
 
 use Application\Controller\HyperlinkController;
+use Application\Controller\NewsController;
 use Application\Controller\SectionController;
 use Application\Form\HyperlinkForm;
+use Application\Form\NewsForm;
+use Application\Form\SectionForm;
 use Application\Form\Factory\HyperlinkFormFactory;
+use Application\Form\Factory\NewsFormFactory;
+use Application\Form\Factory\SectionFormFactory;
 use Application\Service\Factory\HyperlinkModelAdapterFactory;
 use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
@@ -29,10 +34,24 @@ return [
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/application[/:action]',
+                    'route'    => '/application',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
+                    ],
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'config' => [
+                        'type' => Segment::class,
+                        'priority' => 100,
+                        'options' => [
+                            'route' => '/config[/:action]',
+                            'defaults' => [
+                                'action' => 'index',
+                                'controller' => Controller\ApplicationConfigController::class,
+                            ],
+                        ],
                     ],
                 ],
             ],
@@ -84,6 +103,30 @@ return [
                     ],
                 ],
             ],
+            'news' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/news',
+                    'defaults' => [
+                        'controller' => NewsController::class,
+                        'action' => 'index',
+                    ],
+                ],
+                'may_terminate' => TRUE,
+                'child_routes' => [
+                    'default' => [
+                        'type' => Segment::class,
+                        'priority' => -100,
+                        'options' => [
+                            'route' => '/[:action[/:uuid]]',
+                            'defaults' => [
+                                'action' => 'index',
+                                'controller' => NewsController::class,
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'acl' => [
@@ -97,18 +140,26 @@ return [
             'sections' => [],
             'sections/default' => [],
             'sections/config' => [],
+            'news' => [],
+            'news/default' => [],
+            'news/config' => [],
+            'application/config' => [],
         ],
     ],
     'controllers' => [
         'factories' => [
+            Controller\ApplicationConfigController::class => Controller\Factory\ApplicationConfigControllerFactory::class,
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\HyperlinkController::class => Controller\Factory\HyperlinkControllerFactory::class,
+            Controller\NewsController::class => Controller\Factory\NewsControllerFactory::class,
             Controller\SectionController::class => Controller\Factory\SectionControllerFactory::class,
         ],
     ],
     'form_elements' => [
         'factories' => [
             HyperlinkForm::class => HyperlinkFormFactory::class,
+            NewsForm::class => NewsFormFactory::class,
+            SectionForm::class => SectionFormFactory::class,
         ],
     ],
     'navigation' => [
@@ -164,6 +215,40 @@ return [
                     ],
                 ],
             ],
+            'news' => [
+                'label' => 'News',
+                'route' => 'news',
+                'class' => 'dropdown',
+                'resource' => 'news/default',
+                'privilege' => 'create',
+                'pages' => [
+                    [
+                        'label' => 'Add New Section',
+                        'route' => 'news/default',
+                        'action' => 'create',
+                        'resource' => 'news/default',
+                        'privilege' => 'create',
+                    ],
+                    [
+                        'label' => 'View News',
+                        'route' => 'news/default',
+                        'action' => 'index',
+                        'resource' => 'news/default',
+                        'privilege' => 'create',
+                    ],
+                ],
+            ],
+            'settings' => [
+                'pages' => [
+                    'application' => [
+                        'label' => 'Application Settings',
+                        'route' => 'application/config',
+                        'action' => 'index',
+                        'resource' => 'application/config',
+                        'privilege' => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'service_manager' => [
@@ -196,6 +281,7 @@ return [
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
             'navigation'              => __DIR__ . '/../view/partials/navigation.phtml',
             'flashmessenger'          => __DIR__ . '/../view/partials/flashmessenger.phtml',
+            'currentflashmessenger'          => __DIR__ . '/../view/partials/currentflashmessenger.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view',

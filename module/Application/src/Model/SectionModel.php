@@ -20,7 +20,7 @@ class SectionModel extends AbstractBaseModel
     
     public function assign($link_uuid)
     {
-        $sql = new Sql($this->dbAdapter);
+        $sql = new Sql($this->adapter);
         $uuid = $this->generate_uuid();
         
         $columns = [
@@ -30,7 +30,7 @@ class SectionModel extends AbstractBaseModel
         ];
         
         $values = [
-            $uuid->value,
+            $uuid,
             $link_uuid,
             $this->UUID,
         ];
@@ -52,7 +52,7 @@ class SectionModel extends AbstractBaseModel
     
     public function unassign($link_uuid = NULL, $join_uuid = NULL)
     {
-        $sql = new Sql($this->dbAdapter);
+        $sql = new Sql($this->adapter);
         
         $delete = new Delete();
         $delete->from('section_links');

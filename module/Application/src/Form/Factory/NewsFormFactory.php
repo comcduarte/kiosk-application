@@ -1,16 +1,16 @@
 <?php
 namespace Application\Form\Factory;
 
-use Application\Form\SectionForm;
+use Application\Form\NewsForm;
 use Psr\Container\ContainerInterface;
 
-class SectionFormFactory
+class NewsFormFactory
 {
     public function __invoke(ContainerInterface $container)
     {
         $adapter = $container->get('hyperlink-model-adapter');
         
-        $form = new SectionForm();
+        $form = new NewsForm();
         return $form;
     }
 }
