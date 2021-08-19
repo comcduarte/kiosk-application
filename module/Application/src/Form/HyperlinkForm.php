@@ -77,6 +77,25 @@ class HyperlinkForm extends AbstractBaseForm
         ],['priority' => 100]);
         
         $this->add([
+            'name' => 'TARGET',
+            'type' => Select::class,
+            'attributes' => [
+                'id' => 'TARGET',
+                'class' => 'form-control',
+            ],
+            'options' => [
+                'label' => 'Target',
+                'value_options' => [
+                    '_self' => 'Same Window',
+                    '_blank' => 'New Window or Tab',
+                    '_parent' => 'Parent Frame',
+                    '_top' => 'Full body of Window',
+                ],
+            ],
+            
+        ],['priority' => 100]);
+        
+        $this->add([
             'name' => 'PRIORITY',
             'type' => Text::class,
             'attributes' => [

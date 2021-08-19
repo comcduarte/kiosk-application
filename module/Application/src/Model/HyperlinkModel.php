@@ -14,6 +14,7 @@ class HyperlinkModel extends AbstractBaseModel
     public $ICON;
     public $COLOR;
     public $TYPE;
+    public $TARGET;
     public $PRIORITY;
     
     public function __construct($adapter)

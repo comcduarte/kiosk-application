@@ -63,6 +63,7 @@ class ApplicationConfigController extends AbstractConfigController
         $ddl->addColumn(new Varchar('ICON', 50, TRUE));
         $ddl->addColumn(new Varchar('COLOR', 50, TRUE));
         $ddl->addColumn(new Varchar('TYPE', 100, TRUE));
+        $ddl->addColumn(new Varchar('TARGET', 100, TRUE));
         $ddl->addColumn(new Integer('PRIORITY', TRUE));
         
         $ddl->addConstraint(new PrimaryKey('UUID'));

@@ -9,7 +9,7 @@
     	<?php foreach ($records as $record) : ?>
         <!-- SECTION TILES -->
         <div class="tile <?=$record['COLOR']?> w2 h1 <?=$record['TYPE']?>">
-            <a class="link" href="<?=$record['URL']?>">
+            <a class="link" target="<?=$record['TARGET']?>" href="<?=$record['URL']?>">
                 <i class="<?=$record['ICON']?>"></i>
                 <span class="title"><?=$record['CAPTION']?></span>
             </a>
