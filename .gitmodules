@@ -4,9 +4,6 @@
 [submodule "module/Components"]
 	path = module/Components
 	url = git@github.com:comcduarte/com-ponents.git
-[submodule "module/User"]
-	path = module/User
-	url = git@github.com:comcduarte/permits-application.git
 [submodule "module/Annotation"]
 	path = module/Annotation
 	url = git@github.com:comcduarte/com-annotation.git
@@ -16,3 +13,6 @@
 [submodule "module/Files"]
 	path = module/Files
 	url = git@github.com:comcduarte/com-files.git
+[submodule "module/User"]
+	path = module/User
+	url = git@github.com:comcduarte/com-user.git

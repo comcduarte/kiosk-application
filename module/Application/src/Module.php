@@ -7,7 +7,7 @@ namespace Application;
 class Module
 {
     const TITLE = 'Kiosk';
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
     
     public function getConfig(): array
     {
