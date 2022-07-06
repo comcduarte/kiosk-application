@@ -218,10 +218,7 @@ h3, .text-large {
     font-size: 20px;
     line-height: 1.1em;
 }
-h4{
-    fons-size:16px;
-}
-.text-medium{
+h4, .text-medium {
     font-size:16px;
 }
 
