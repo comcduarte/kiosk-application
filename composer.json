@@ -9,6 +9,11 @@
 		"skeleton",
 		"framework"
 	],
+	"config" : {
+		"allow-plugins" : {
+			"laminas/*" : true
+		}
+	},
 	"require" : {
 		"php" : "^7.3 || ~8.0.0",
 		"laminas/laminas-component-installer" : "^2.4",
