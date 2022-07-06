@@ -105,6 +105,7 @@ body {
 /* Track */
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.1); 
+    box-shadow: inset 0 0 2px rgba(0,0,0,0.1); 
     background: rgba(0,0,0,0);
 }
 
@@ -1703,10 +1704,6 @@ select option{
     margin:0;
 }
 
-.mlistbottom .close-mlightbox{
-
-}
-
 /*==== 4.6. Metromega Blogpost ====*/
 #blog{
     width:100%;
@@ -1907,6 +1904,7 @@ select option{
 }
 .mCustomScrollBox{
     -ms-touch-action:none; /*MSPointer events - direct all pointer events to js*/
+    touch-action:none; /*Compatibility*/
 }
 
 /* default scrollbar colors and backgrounds (default theme) */
